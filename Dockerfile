@@ -33,19 +33,19 @@ ADD cronsun/cronsun.zip /data/cronsun/
 ADD etcd/etcd.zip /data/etcd/
 
 RUN cd /data/cronsun \
-	&& unzip cronsun.zip \
-	&& rm -rf cronsun.zip
+	&& unzip cronsun.zip 
+	#&& rm -rf cronsun.zip
 
 RUN cd /data/etcd \
 	&& unzip etcd.zip \
-	&& cp etcd etcdctl /usr/bin/ \
-	&& rm -rf etcd.zip
+	&& cp etcd etcdctl /usr/bin/ 
+	#&& rm -rf etcd.zip
 
 #RUN alias ll='ls -lsh'
   
 RUN echo "/usr/sbin/sshd -D" >>/etc/start.sh
 
-ADD shell/ /data/
+ADD shell /data/shell/
 
 EXPOSE 80 22 7079 
 
