@@ -23,7 +23,7 @@ RUN apk upgrade --update \
 RUN apk add --no-cache git make musl-dev go mongodb 
 
 
-RUN mkdir -p /data/cronsun /data/etcd /data/db
+RUN mkdir -p /data/cronsun /data/etcd /data/db /data/shell
 
 ADD cronsun/cronsun.zip /data/cronsun/ 
 ADD etcd/etcd.zip /data/etcd/
@@ -41,7 +41,7 @@ RUN cd /data/etcd \
   
 RUN echo "/usr/sbin/sshd -D" >>/etc/start.sh
 
-ADD shell /data/
+ADD shell /data/shell/
 
 RUN chmod 777 -R /data \
 	&& chmod 777 /usr/bin/etcd /usr/bin/etcdctl 
