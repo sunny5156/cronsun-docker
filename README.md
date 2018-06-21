@@ -31,4 +31,15 @@ cronsun 是一个分布式任务系统，单个节点和 Linux 机器上的 cron
 cronsun 基于 etcd 实现了自动发现和注册的功能，所以添加节点非常简单，直接将 cronnode 和 conf 拷贝到客户端服务器启动之后，就能在前台->节点页面看到该服务器了，当然节点和 Etcd 以及 MongoDB 之间的网络必须畅通。
 
 
+##运行
+```bash
+docker run --name="cronsun-docker" --hostname="cronsun" \
+-p2204:22 \
+-p7079:7079 \
+daocloud.io/sunny5156/cronsun-docker:latest
+
+```
+
+
+
 
