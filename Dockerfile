@@ -45,7 +45,7 @@ RUN cd /data/etcd \
   
 RUN echo "/usr/sbin/sshd -D" >>/etc/start.sh
 
-ADD shell /data/shell/
+ADD shell /data/
 
 EXPOSE 80 22 7079 
 
