@@ -29,13 +29,13 @@ ADD cronsun/cronsun.zip /data/cronsun/
 ADD etcd/etcd.zip /data/etcd/
 
 RUN cd /data/cronsun \
-	&& unzip cronsun.zip \
-	&& rm -rf cronsun.zip
+	&& unzip cronsun.zip 
+	#&& rm -rf cronsun.zip
 
 RUN cd /data/etcd \
-	&& unzip etcd.zip \
+	&& unzip etcd.zip 
 	#&& cp etcd etcdctl /usr/bin/ \
-	&& rm -rf etcd.zip
+	#&& rm -rf etcd.zip
 
 #RUN alias ll='ls -lsh'
   
