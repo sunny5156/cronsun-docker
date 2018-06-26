@@ -34,7 +34,7 @@ RUN cd /data/cronsun \
 
 RUN cd /data/etcd \
 	&& unzip etcd.zip \
-	&& cp etcd etcdctl /usr/bin/ \
+	#&& cp etcd etcdctl /usr/bin/ \
 	&& rm -rf etcd.zip
 
 #RUN alias ll='ls -lsh'
