@@ -3,7 +3,7 @@ cronsun 是一个分布式任务系统，单个节点和 Linux 机器上的 cron
 
 [相关介绍](https://zhangge.net/5129.html)
 
-##web管理
+## web管理
 
 本文主要介绍功能，这里就简单写下关键步骤：
 
@@ -26,12 +26,19 @@ cronsun 是一个分布式任务系统，单个节点和 Linux 机器上的 cron
 4、部署鉴权组件 aProxy，cronsun 在鉴权方面做的非常粗糙，所以这里用到了 cronsun 团队开发的 aProxy 鉴权组件，实现的原理为基于 Go 语言，反向代理了后端 WEB，从而实现域名和页面地址的访问控制，介绍地址：https://www.cnblogs.com/QLeelulu/p/aproxy.html
 
 
-##job节点
+## job节点
 
 cronsun 基于 etcd 实现了自动发现和注册的功能，所以添加节点非常简单，直接将 cronnode 和 conf 拷贝到客户端服务器启动之后，就能在前台->节点页面看到该服务器了，当然节点和 Etcd 以及 MongoDB 之间的网络必须畅通。
 
+## 添加节点
 
-##运行
+```bash
+curl http://172.17.0.5:2379/v2/members -XPOST -H "Content-Type: application/json" -d '{"peerURLs":["http://172.17.0.6:2380"]}'
+
+```
+
+
+## 运行
 ```bash
 docker run --name="cronsun-docker" --hostname="cronsun" \
 -p2204:22 \
@@ -39,6 +46,8 @@ docker run --name="cronsun-docker" --hostname="cronsun" \
 daocloud.io/sunny5156/cronsun-docker:latest
 
 ```
+
+
 
 
 
