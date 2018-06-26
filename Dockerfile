@@ -47,6 +47,6 @@ RUN chmod 777 -R /data \
 	&& chmod 777 /usr/bin/etcd /usr/bin/etcdctl 
 
 
-EXPOSE 80 22 7079 
+EXPOSE 80 22 7079 2379 2380
 
 CMD ["/bin/sh","/etc/start.sh"]
