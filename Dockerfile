@@ -43,8 +43,8 @@ RUN echo "/usr/sbin/sshd -D" >>/etc/start.sh
 
 ADD shell /data/shell/
 
-RUN chmod 777 -R /data \
-	&& chmod 777 /usr/bin/etcd /usr/bin/etcdctl 
+RUN chmod 777 -R /data 
+	#&& chmod 777 /usr/bin/etcd /usr/bin/etcdctl 
 
 
 EXPOSE 80 22 7079 2379 2380
