@@ -9,7 +9,7 @@ ARG TZ="Asia/Shanghai"
 ENV TZ ${TZ}
 
 RUN apk upgrade --update \
-    && apk add curl bash tzdata openssh\
+    && apk add curl bash tzdata openssh \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
