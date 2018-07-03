@@ -22,18 +22,18 @@ RUN apk upgrade --update \
     
 RUN apk add --no-cache git make musl-dev go mongodb 
 
+RUN apk add python supervisor
 
-RUN mkdir -p /data/cronsun /data/etcd /data/db /data/shell
+RUN mkdir -p /cronsun-etcd/cronsun /cronsun-etcd/etcd /data/db /cronsun-etcd/data/supervisor 
 
-ADD cronsun/cronsun.zip /data/cronsun/ 
-ADD etcd/etcd.zip /data/etcd/
+ADD config /cronsun-etcd/
 
-RUN cd /data/cronsun \
-	&& unzip cronsun.zip 
+#RUN cd /cronsun-etcd/cronsun \
+	#&& unzip cronsun.zip 
 	#&& rm -rf cronsun.zip
 
-RUN cd /data/etcd \
-	&& unzip etcd.zip 
+#RUN cd /cronsun-etcd/etcd \
+	#&& unzip etcd.zip 
 	#&& cp etcd etcdctl /usr/bin/ \
 	#&& rm -rf etcd.zip
 
@@ -41,10 +41,14 @@ RUN cd /data/etcd \
   
 RUN echo "/usr/sbin/sshd -D" >>/etc/start.sh
 
-ADD shell /data/shell/
+#ADD shell /data/shell/
 
-RUN chmod 777 -R /data 
+RUN chmod 777 -R /cronsun-etcd
 	#&& chmod 777 /usr/bin/etcd /usr/bin/etcdctl 
+	
+
+#ADD config/.bash_profile /home/super/
+#ADD config/.bashrc /home/super/
 
 
 EXPOSE 80 22 7079 2379 2380
