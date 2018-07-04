@@ -60,7 +60,7 @@ RUN cd ${SRC_DIR} \
 
 #ADD shell /data/shell/
 
-RUN chmod 777 -R /cronsun-etcd
+RUN chmod 777 -R ${WORKER}
 	#&& chmod 777 /usr/bin/etcd /usr/bin/etcdctl 
 	
 
