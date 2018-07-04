@@ -66,6 +66,9 @@ RUN chmod 777 -R /cronsun-etcd
 
 #ADD config/.bash_profile /home/super/
 #ADD config/.bashrc /home/super/
+
+ADD shell/.bash_profile /root/
+ADD shell/.bashrc /root/
 ADD run.sh /
 
 ENTRYPOINT ["/run.sh"]
