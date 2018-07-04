@@ -31,14 +31,14 @@ RUN mkdir -p  /data/db ${WORKER}/data/supervisor  ${WORKER}/src
 
 ADD config ${WORKER}/
 
-ADD lib/lrzsz-0.12.20.tar.gz ${SRC_DIR}/
+#ADD lib/lrzsz-0.12.20.tar.gz ${SRC_DIR}/
 
 # -----------------------------------------------------------------------------
 # Install lrzsz
 # ----------------------------------------------------------------------------- 
 ENV lrzsz_version 0.12.20
 RUN cd ${SRC_DIR} \
-    #&& wget -q -O lrzsz-${lrzsz_version}.tar.gz  http://down1.chinaunix.net/distfiles/lrzsz-${lrzsz_version}.tar.gz \
+    && wget -q -O lrzsz-${lrzsz_version}.tar.gz  http://down1.chinaunix.net/distfiles/lrzsz-${lrzsz_version}.tar.gz \
     && tar -zxvf lrzsz-${lrzsz_version}.tar.gz  \
     && cd lrzsz-${lrzsz_version} \
     && ./configure \
