@@ -8,6 +8,9 @@ ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
 
+EVN WORKER /worker
+EVN SRC_DIR ${WORKER}/src
+
 RUN apk upgrade --update \
     && apk add curl bash tzdata openssh \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
@@ -24,22 +27,36 @@ RUN apk add --no-cache git make musl-dev go mongodb
 
 RUN apk add python supervisor
 
-RUN mkdir -p /cronsun-etcd/cronsun /cronsun-etcd/etcd /data/db /cronsun-etcd/data/supervisor 
+RUN mkdir -p  /data/db ${WORKER}/data/supervisor  ${WORKER}/src
 
-ADD config /cronsun-etcd/
+ADD config ${WORKER}/
 
-#RUN cd /cronsun-etcd/cronsun \
+ADD lib/lrzsz-0.12.20.tar.gz ${SRC_DIR}
+
+# -----------------------------------------------------------------------------
+# Install lrzsz
+# ----------------------------------------------------------------------------- 
+ENV lrzsz_version 0.12.20
+RUN cd ${SRC_DIR} \
+    #&& wget -q -O lrzsz-${lrzsz_version}.tar.gz  http://down1.chinaunix.net/distfiles/lrzsz-${lrzsz_version}.tar.gz \
+    && tar zxvf lrzsz-${lrzsz_version}.tar.gz  \
+    && cd lrzsz-${lrzsz_version} \
+    && ./configure \
+    && make \
+    && make install \
+    && ln -s /usr/local/bin/lrz rz \
+	&& ln -s /usr/local/bin/lsz sz
+    
+
+#RUN cd ${WORKER}/cronsun \
 	#&& unzip cronsun.zip 
 	#&& rm -rf cronsun.zip
 
-#RUN cd /cronsun-etcd/etcd \
+#RUN cd ${WORKER}/etcd \
 	#&& unzip etcd.zip 
 	#&& cp etcd etcdctl /usr/bin/ \
 	#&& rm -rf etcd.zip
 
-#RUN alias ll='ls -lsh'
-  
-RUN echo "/usr/sbin/sshd -D" >>/etc/start.sh
 
 #ADD shell /data/shell/
 
@@ -49,8 +66,8 @@ RUN chmod 777 -R /cronsun-etcd
 
 #ADD config/.bash_profile /home/super/
 #ADD config/.bashrc /home/super/
+ADD run.sh /
 
+ENTRYPOINT ["/run.sh"]
 
 EXPOSE 80 22 7079 2379 2380
-
-CMD ["/bin/sh","/etc/start.sh"]
