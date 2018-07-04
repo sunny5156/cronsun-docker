@@ -71,6 +71,8 @@ ADD shell/.bash_profile /root/
 ADD shell/.bashrc /root/
 ADD run.sh /
 
+RUN sed -i 's@bin/ash@bin/bash@g' /etc/passwd
+
 ENTRYPOINT ["/run.sh"]
 
 EXPOSE 80 22 7079 2379 2380
