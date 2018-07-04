@@ -8,8 +8,8 @@ ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
 
-EVN WORKER /worker
-EVN SRC_DIR ${WORKER}/src
+ENV WORKER /worker
+ENV SRC_DIR ${WORKER}/src
 
 RUN apk upgrade --update \
     && apk add curl bash tzdata openssh \
