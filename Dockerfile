@@ -71,6 +71,8 @@ ADD shell/.bash_profile /root/
 ADD shell/.bashrc /root/
 ADD run.sh /
 
+RUN chmod 777 -R /run.sh /worker
+
 RUN sed -i 's@bin/ash@bin/bash@g' /etc/passwd
 
 ENTRYPOINT ["/run.sh"]
