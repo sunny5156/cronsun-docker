@@ -75,7 +75,11 @@ ADD run.sh /
 
 #RUN sed -i 's@bin/ash@bin/bash@g' /etc/passwd
 
+  
+RUN echo "/usr/sbin/sshd -D" >>/etc/start.sh
+
 #ENTRYPOINT ["/run.sh"]
 
 EXPOSE 80 22 7079 2379 2380
-CMD ["/usr/sbin/init"]
+
+CMD ["/bin/sh","/etc/start.sh"]
