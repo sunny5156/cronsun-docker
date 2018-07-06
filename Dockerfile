@@ -71,10 +71,11 @@ ADD shell/.bash_profile /root/
 ADD shell/.bashrc /root/
 ADD run.sh /
 
-RUN chmod 777 -R /run.sh /worker
+#RUN chmod 777 -R /run.sh /worker
 
-RUN sed -i 's@bin/ash@bin/bash@g' /etc/passwd
+#RUN sed -i 's@bin/ash@bin/bash@g' /etc/passwd
 
-ENTRYPOINT ["/run.sh"]
+#ENTRYPOINT ["/run.sh"]
 
 EXPOSE 80 22 7079 2379 2380
+CMD ["/usr/sbin/init"]
