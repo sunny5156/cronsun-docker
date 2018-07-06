@@ -1,6 +1,6 @@
 {
     "Endpoints":[
-        "http://172.17.0.2:2379"
+        "http://127.0.0.1:2379"
     ],
     "Username":"",
     "Password":"",

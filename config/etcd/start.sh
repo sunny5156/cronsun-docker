@@ -14,12 +14,12 @@ HOST_4=172.17.0.7
 #CLUSTER=${NAME_1}=http://${HOST_1}:2380,${NAME_2}=http://${HOST_2}:2380,${NAME_3}=http://${HOST_3}:2380,${NAME_4}=http://${HOST_4}:2380
 CLUSTER=${NAME_1}=http://${HOST_1}:2380,${NAME_2}=http://${HOST_2}:2380
 
-THIS_NAME=${NAME_2}
-THIS_HOST=${HOST_2}
+THIS_NAME=${NAME_1}
+THIS_HOST=${HOST_1}
 
-/cronsun-etcd/etcd/etcd \
+nohup /worker/etcd/etcd \
 	--name ${THIS_NAME} \
-	--data-dir=/vue-msf/etcd/data \
+	--data-dir=/worker/etcd/data \
 	--initial-advertise-peer-urls http://${THIS_HOST}:2380 \
 	--listen-peer-urls http://${THIS_HOST}:2380 \
 	--advertise-client-urls http://${THIS_HOST}:2379 \
