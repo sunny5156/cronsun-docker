@@ -4,7 +4,7 @@
 		"Enabled": true
 	},
     "Session": {
-        "StorePrefixPath": "/vue-msf/data/cronsun/sess/",
+        "StorePrefixPath": "/worker/data/cronsun/sess/",
         "CookieName": "uid",
         "Expiration": 8640000
     },

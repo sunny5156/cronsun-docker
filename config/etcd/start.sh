@@ -26,6 +26,7 @@ THIS_HOST=${HOST_2}
 	--listen-client-urls http://${THIS_HOST}:2379,http://127.0.0.1:2379 \
 	--initial-cluster-token ${TOKEN} \
 	--initial-cluster-state ${CLUSTER_STATE} \
-	--initial-cluster ${CLUSTER}
+	--initial-cluster ${CLUSTER} \
+	>> /worker/data/etcd/log/etcd.log 2>&1
 
 
