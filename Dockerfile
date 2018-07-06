@@ -76,7 +76,7 @@ ADD run.sh /
 #RUN sed -i 's@bin/ash@bin/bash@g' /etc/passwd
 
   
-RUN echo -e "#!/bin/bash\n/usr/sbin/sshd -D \nsupervisord -c /worker/supervisor/supervisord.conf" >>/etc/start.sh
+RUN echo -e "#!/bin/bash\n/usr/sbin/sshd -D \nnohup supervisord -c /worker/supervisor/supervisord.conf" >>/etc/start.sh
 
 #ENTRYPOINT ["/run.sh"]
 
